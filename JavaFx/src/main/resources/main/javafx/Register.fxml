@@ -27,7 +27,7 @@
                <Font name="System Italic" size="14.0" />
             </font>
          </Label>
-         <TextField layoutX="166.0" layoutY="32.0" prefHeight="25.0" prefWidth="224.0" />
+         <TextField fx:id="txt_name" layoutX="166.0" layoutY="32.0" prefHeight="25.0" prefWidth="224.0" />
          <Label layoutX="61.0" layoutY="118.0" text="Birthday">
             <font>
                <Font name="System Italic" size="14.0" />
@@ -43,9 +43,9 @@
                <Font name="System Italic" size="14.0" />
             </font>
          </Label>
-         <PasswordField layoutX="166.0" layoutY="73.0" prefHeight="25.0" prefWidth="224.0" />
-         <DatePicker layoutX="166.0" layoutY="115.0" prefHeight="25.0" prefWidth="224.0" />
-         <ComboBox layoutX="166.0" layoutY="157.0" prefHeight="25.0" prefWidth="224.0" promptText="Choose City" />
+         <PasswordField fx:id="txt_password" layoutX="166.0" layoutY="73.0" prefHeight="25.0" prefWidth="224.0" />
+         <DatePicker fx:id="birthday_picker" layoutX="166.0" layoutY="115.0" prefHeight="25.0" prefWidth="224.0" />
+         <ComboBox fx:id="cho_city" layoutX="166.0" layoutY="157.0" prefHeight="25.0" prefWidth="224.0" promptText="Choose City" />
          <Label layoutX="63.0" layoutY="193.0" text="Gender">
             <font>
                <Font name="System Italic" size="14.0" />
@@ -53,13 +53,13 @@
          </Label>
          <RadioButton layoutX="166.0" layoutY="194.0" mnemonicParsing="false" selected="true" text="Male">
             <toggleGroup>
-               <ToggleGroup fx:id="Gender" />
+               <ToggleGroup fx:id="gender" />
             </toggleGroup>
          </RadioButton>
-         <RadioButton layoutX="241.0" layoutY="194.0" mnemonicParsing="false" text="Female" toggleGroup="$Gender" />
-         <CheckBox layoutX="166.0" layoutY="223.0" mnemonicParsing="false" text="Java" />
-         <CheckBox layoutX="231.0" layoutY="223.0" mnemonicParsing="false" text="Python" />
-         <CheckBox layoutX="300.0" layoutY="223.0" mnemonicParsing="false" text="MySQL" />
+         <RadioButton layoutX="241.0" layoutY="194.0" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
+         <CheckBox fx:id="chk_java" layoutX="166.0" layoutY="223.0" mnemonicParsing="false" text="Java" />
+         <CheckBox fx:id="chk_python" layoutX="231.0" layoutY="223.0" mnemonicParsing="false" text="Python" />
+         <CheckBox fx:id="chk_mysql" layoutX="300.0" layoutY="223.0" mnemonicParsing="false" text="MySQL" />
          <Label layoutX="63.0" layoutY="222.0" text="Skillsets">
             <font>
                <Font name="System Italic" size="14.0" />
@@ -74,5 +74,5 @@
          <Button layoutX="166.0" layoutY="414.0" mnemonicParsing="false" onAction="#btn_register_click" style="-fx-background-color: #0069c0;" text="Register" textFill="WHITE" />
       </children>
    </Pane>
-   <TextArea layoutX="134.0" layoutY="350.0" prefHeight="108.0" prefWidth="324.0" />
+   <TextArea fx:id="edu_textarea" layoutX="134.0" layoutY="350.0" prefHeight="108.0" prefWidth="324.0" />
 </AnchorPane>
