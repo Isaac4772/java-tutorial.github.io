@@ -16,6 +16,8 @@ public class ExecuteBatch {
             Scanner input = new Scanner(System.in)) {
             String insert = "INSERT INTO employees(empNo, name, salary, city, birthday)VALUES(?,?,?,?,?)";
 
+
+
             PreparedStatement pstm = connection.prepareStatement(insert);
             for(var i = 1; i <= 3; i++){
                 System.out.print("Enter employee no: ");

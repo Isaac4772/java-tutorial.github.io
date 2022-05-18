@@ -1,8 +1,11 @@
 module main.bookmanagement {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
-
-    opens main.bookmanagement to javafx.fxml;
-    exports main.bookmanagement;
+    
+    exports bms;
+    opens bms to javafx.fxml;
+    exports bms.controller;
+    opens bms.controller to javafx.fxml;
 }
