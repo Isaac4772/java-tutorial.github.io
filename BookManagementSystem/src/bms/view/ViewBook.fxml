@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="586.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bms.controller.BookViewController">
+   <children>
+      <Pane layoutX="6.0" prefHeight="89.0" prefWidth="679.0">
+         <children>
+            <TextField fx:id="txt_author" layoutX="221.0" layoutY="26.0" promptText="Author" />
+            <TextField fx:id="txt_category" layoutX="390.0" layoutY="26.0" promptText="Category" />
+            <Button layoutX="561.0" layoutY="24.0" mnemonicParsing="false" onAction="#btn_search_click" prefHeight="26.0" prefWidth="77.0" text="Search" />
+            <DatePicker fx:id="txt_publish" layoutX="25.0" layoutY="25.0" promptText="Publish Date" />
+         </children>
+      </Pane>
+      <ScrollPane layoutX="31.0" layoutY="74.0" prefHeight="404.0" prefWidth="620.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="tbl_data" layoutX="1.0" prefHeight="404.0" prefWidth="620.0">
+                    <columns>
+                      <TableColumn fx:id="col_code" prefWidth="64.0" text="Code" />
+                      <TableColumn fx:id="col_title" prefWidth="146.0" text="Title" />
+                        <TableColumn fx:id="col_date" prefWidth="131.0" text="Publish Date" />
+                        <TableColumn fx:id="col_author" prefWidth="150.0" text="Author" />
+                        <TableColumn fx:id="col_category" prefWidth="125.0" text="Category" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button layoutX="558.0" layoutY="506.0" mnemonicParsing="false" onAction="#btn_back_click" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ff0000;" text="Back" textFill="#f5f4f4" />
+   </children>
+</AnchorPane>

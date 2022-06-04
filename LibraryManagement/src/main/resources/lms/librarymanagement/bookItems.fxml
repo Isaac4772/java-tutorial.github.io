@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="itemC" alignment="CENTER_LEFT" onMouseClicked="#btn_edit_book" prefHeight="43.0" prefWidth="754.0" spacing="60.0" style="-fx-background-color: #DBDFFD; -fx-border-radius: 25; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.librarymanagement.BookItemsController">
+   <Label fx:id="lbl_code" prefHeight="17.0" prefWidth="32.0" textFill="#3b3f45" HBox.hgrow="NEVER">
+      <HBox.margin>
+         <Insets left="50.0" />
+      </HBox.margin>
+   </Label>
+   <Label fx:id="lbl_title" prefHeight="17.0" prefWidth="93.0" textFill="#3b3f45" HBox.hgrow="NEVER">
+      <HBox.margin>
+         <Insets />
+      </HBox.margin>
+   </Label>
+   <Label fx:id="lbl_published_date" prefHeight="17.0" prefWidth="90.0" textFill="#3b3f45" HBox.hgrow="NEVER">
+      <HBox.margin>
+         <Insets />
+      </HBox.margin>
+   </Label>
+   <Label fx:id="lbl_category" prefWidth="68.0" textFill="#3b3f45" HBox.hgrow="NEVER">
+      <HBox.margin>
+         <Insets />
+      </HBox.margin>
+   </Label>
+   <Label fx:id="lbl_author" prefHeight="17.0" prefWidth="66.0" textFill="#3b3f45" HBox.hgrow="NEVER">
+      <HBox.margin>
+         <Insets />
+      </HBox.margin>
+   </Label>
+   <Label fx:id="lbl_is_available" layoutX="501.0" layoutY="23.0" prefHeight="17.0" prefWidth="26.0" textFill="#3b3f45" />
+</HBox>

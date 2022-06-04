@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Java_tutorials/src/.metadata/.plugins/org.eclipse.egit.core/.org.eclipse.egit.core.cmp/.org.eclipse.egit.core.cmp.iml" filepath="$PROJECT_DIR$/Java_tutorials/src/.metadata/.plugins/org.eclipse.egit.core/.org.eclipse.egit.core.cmp/.org.eclipse.egit.core.cmp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BookManagementSystem/BookManagementSystem.iml" filepath="$PROJECT_DIR$/BookManagementSystem/BookManagementSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_tutorials/Java_tutorials.iml" filepath="$PROJECT_DIR$/Java_tutorials/Java_tutorials.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-tutorial.github.io.iml" filepath="$PROJECT_DIR$/java-tutorial.github.io.iml" />
     </modules>
   </component>
