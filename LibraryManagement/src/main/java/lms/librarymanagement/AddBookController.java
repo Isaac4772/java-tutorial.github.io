@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AddBookController implements Initializable {
+public class AddBookController extends HomeController implements Initializable {
 
     @FXML
     private Button btn_auth;
@@ -55,6 +55,7 @@ public class AddBookController implements Initializable {
 
     private List<Author> authorList;
     private List<Category> categoryList;
+    
 
     @FXML
     void btn_add_new(ActionEvent event) {
@@ -83,7 +84,7 @@ public class AddBookController implements Initializable {
         LocalDate pub_date = cbo_pub_date.getValue();
         int author_index = cbo_auth.getSelectionModel().getSelectedIndex();
         int category_index = cbo_cate.getSelectionModel().getSelectedIndex();
-        int available = rdo_avail.getSelectedToggle() == rdo_yes ? 1 : 0;
+        int available = 1;
 
         if(title.isEmpty()) {
             showAlert(AlertType.WARNING,"Please enter title");
@@ -118,8 +119,7 @@ public class AddBookController implements Initializable {
         if(DatabaseService.addNewBook(book)) {
             Stage stage = (Stage) btn_save.getScene().getWindow();
             stage.close();
-            showAlert(Alert.AlertType.INFORMATION, "A new Book is added");
-
+            showAlert(Alert.AlertType.INFORMATION, "A new book is added");
         }else {
             showAlert(Alert.AlertType.ERROR, "Something is wrong");
         }

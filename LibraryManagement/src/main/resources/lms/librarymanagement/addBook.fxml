@@ -4,13 +4,11 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.librarymanagement.AddBookController">
+<AnchorPane prefHeight="337.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.librarymanagement.AddBookController">
     <TextField fx:id="txt_title" layoutX="204.0" layoutY="73.0" prefHeight="20.0" prefWidth="158.0" style="-fx-background-radius: 25; -fx-border-color: #B7C3D7; -fx-border-radius: 25;" />
     <ComboBox fx:id="cbo_cate" layoutX="204.0" layoutY="121.0" prefHeight="25.0" prefWidth="158.0" promptText="Choose category" style="-fx-background-color: #DBDFFD; -fx-background-radius: 25;" />
     <ComboBox fx:id="cbo_auth" layoutX="204.0" layoutY="167.0" prefHeight="25.0" prefWidth="158.0" promptText="Choose author" style="-fx-background-color: #DBDFFD; -fx-background-radius: 25;" />
@@ -37,18 +35,7 @@
             <Font size="14.0" />
         </font>
     </Label>
-    <RadioButton fx:id="rdo_yes" layoutX="205.0" layoutY="258.0" mnemonicParsing="false" selected="true" text="Yes">
-        <toggleGroup>
-            <ToggleGroup fx:id="rdo_avail" />
-        </toggleGroup>
-    </RadioButton>
-    <RadioButton fx:id="rdo_no" layoutX="264.0" layoutY="258.0" mnemonicParsing="false" text="No" toggleGroup="$rdo_avail" />
-    <Label layoutX="95.0" layoutY="256.0" text="Available">
-        <font>
-            <Font size="14.0" />
-        </font>
-    </Label>
-    <Button fx:id="btn_save" layoutX="147.0" layoutY="312.0" mnemonicParsing="false" onAction="#btn_save_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25; -fx-background-color: #00e676;" text="Save" textFill="WHITE" />
-    <Button fx:id="btn_cancel" layoutX="289.0" layoutY="312.0" mnemonicParsing="false" onAction="#btn_cancel_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Cancel" />
-    <Button layoutX="219.0" layoutY="312.0" mnemonicParsing="false" onAction="#btn_clear_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Clear" />
+    <Button fx:id="btn_save" layoutX="160.0" layoutY="258.0" mnemonicParsing="false" onAction="#btn_save_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25; -fx-background-color: #00e676;" text="Save" textFill="WHITE" />
+    <Button fx:id="btn_cancel" layoutX="302.0" layoutY="258.0" mnemonicParsing="false" onAction="#btn_cancel_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Cancel" />
+    <Button layoutX="232.0" layoutY="258.0" mnemonicParsing="false" onAction="#btn_clear_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Clear" />
 </AnchorPane>

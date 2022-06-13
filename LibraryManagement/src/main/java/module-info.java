@@ -1,6 +1,7 @@
 module lms.librarymanagement {
     requires javafx.controls;
     requires javafx.fxml;
+    requires transitive javafx.graphics;
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;

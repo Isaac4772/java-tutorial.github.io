@@ -56,4 +56,11 @@ public class Book {
     public void setIsAvailable(int isAvailable) {
         this.isAvailable = isAvailable;
     }
+    
+    public String getAuthorName() {
+    	return getAuthor().getName();
+    }
+    public String getCategoryName() {
+    	return getCategory().getName();
+    }
 }
