@@ -4,28 +4,40 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="480.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.librarymanagement.AddBorrowedBookController">
+<AnchorPane prefHeight="480.0" prefWidth="513.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.librarymanagement.AddBorrowedBookController">
    <children>
-      <Button fx:id="btn_cate" layoutX="452.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_add_new" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" stylesheets="@../Style/style.css" text="add new" />
-      <Label layoutX="384.0" layoutY="15.0" text="Members">
+      <Button fx:id="btn_cate" layoutX="347.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_add_new" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" stylesheets="@../Style/style.css" text="add new" />
+      <Label layoutX="347.0" layoutY="396.0" text="Members">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="btn_save" layoutX="185.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_save_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25; -fx-background-color: #00e676;" text="Save" textFill="WHITE" />
-      <Button fx:id="btn_cancel" layoutX="326.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_cancel_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Cancel" />
-      <Button layoutX="256.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_clear_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Clear" />
-      <ListView fx:id="book_data" layoutX="33.0" layoutY="81.0" prefHeight="334.0" prefWidth="239.0" />
-      <ListView fx:id="member_data" layoutX="300.0" layoutY="81.0" prefHeight="334.0" prefWidth="239.0" />
-      <TextField layoutX="300.0" layoutY="42.0" prefHeight="27.0" prefWidth="239.0" promptText="search" style="-fx-background-color: #DBDFFD; -fx-border-color: #B7C3D7; -fx-border-radius: 25; -fx-background-radius: 25;" />
-      <Label layoutX="130.0" layoutY="15.0" text="Books">
+      <Button fx:id="btn_save" layoutX="138.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_save_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25; -fx-background-color: #00e676;" text="Save" textFill="WHITE" />
+      <Button fx:id="btn_cancel" layoutX="273.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_cancel_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Cancel" />
+      <Button layoutX="206.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_clear_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Clear" />
+      <ListView fx:id="book_data" layoutX="37.0" layoutY="56.0" prefHeight="334.0" prefWidth="247.0" style="-fx-background-color: transparent;" />
+      <ListView fx:id="member_data" layoutX="284.0" layoutY="56.0" prefHeight="334.0" prefWidth="196.0" style="-fx-background-color: transparent;" />
+      <Label layoutX="138.0" layoutY="396.0" text="Books">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="33.0" layoutY="42.0" prefHeight="27.0" prefWidth="239.0" promptText="search" style="-fx-background-color: #DBDFFD; -fx-border-color: #B7C3D7; -fx-border-radius: 25; -fx-background-radius: 25;" />
+      <TextField fx:id="txt_search_boooks_to_borrow" layoutX="37.0" layoutY="14.0" onKeyPressed="#searchBooks" prefHeight="27.0" prefWidth="169.0" promptText="search" style="-fx-background-color: #DBDFFD; -fx-border-color: #B7C3D7; -fx-border-radius: 25; -fx-background-radius: 25;" />
+      <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="180.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_Search_52px.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txt_search_member" layoutX="311.0" layoutY="14.0" onKeyPressed="#searchMembers" prefHeight="27.0" prefWidth="169.0" promptText="search" style="-fx-background-color: #DBDFFD; -fx-border-color: #B7C3D7; -fx-border-radius: 25; -fx-background-radius: 25;" />
+      <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="451.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_Search_52px.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

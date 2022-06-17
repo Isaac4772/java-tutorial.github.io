@@ -304,8 +304,8 @@ public class DatabaseService {
 				preparedStatement1.setDate(1, Date.valueOf(LocalDate.now()));
 			}
 			preparedStatement1.setInt(2, borrowedBook.getBookId());
-			preparedStatement.executeQuery();
-			preparedStatement1.executeQuery();
+			preparedStatement.executeUpdate();
+			preparedStatement1.executeUpdate();
 			returned = true;
 			
 		} catch (SQLException e) {
@@ -342,4 +342,88 @@ public class DatabaseService {
 		}
 		return unreturnedBooks;
 	}
+
+	public static void addFine(List<BorrowedBook> booksOverDue) {
+		try(Connection connection = MyConnection.getConnection()){
+			String query = "UPDATE `borrow_books` SET `fine`='500' WHERE id = ?";
+			PreparedStatement pstm = connection.prepareStatement(query);
+			for(BorrowedBook book: booksOverDue) {
+				pstm.setInt(1, book.getId());
+				pstm.addBatch();
+			}
+			pstm.executeBatch();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static boolean updateAuthor(Author author) {
+		boolean updated = false;
+		try(Connection connection = MyConnection.getConnection()){
+			String query = "UPDATE `authors` SET `name`=?, `country`=? WHERE author_id = ?";
+			PreparedStatement pstm = connection.prepareStatement(query);
+			pstm.setString(1, author.getName());
+			pstm.setString(2, author.getCountry());
+			pstm.setInt(3, author.getAuthor_id());
+			pstm.executeUpdate();
+			updated = true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return updated;
+	}
+
+	public static boolean updateCategory(Category category) {
+		boolean updated = false;
+		try(Connection connection = MyConnection.getConnection()){
+			String query = "UPDATE `categories` SET `name`=? WHERE category_id = ?";
+			PreparedStatement pstm = connection.prepareStatement(query);
+			pstm.setString(1, category.getName());
+			pstm.setInt(2, category.getCategoryId());
+			pstm.executeUpdate();
+			updated = true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return updated;
+		
+	}
+
+	public static boolean addNewCategory(Category category) {
+		boolean added = false;
+		try(Connection connection = MyConnection.getConnection()){
+			String query = "INSERT INTO `categories`(`name`) VALUES (?)";
+			PreparedStatement pstm = connection.prepareStatement(query);
+			pstm.setString(1, category.getName());
+			pstm.executeQuery();
+			added = true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return added;
+	}
+
+	public static boolean addNewAuthor(Author author) {
+		boolean added = false;
+		try(Connection connection = MyConnection.getConnection()){
+			String query = "INSERT INTO `authors`(`name`, `country`) VALUES (?,?)";
+			PreparedStatement pstm = connection.prepareStatement(query);
+			pstm.setString(1, author.getName());
+			pstm.setString(2, author.getCountry());
+			pstm.executeQuery();
+			added = true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return added;
+	}
+
 }
