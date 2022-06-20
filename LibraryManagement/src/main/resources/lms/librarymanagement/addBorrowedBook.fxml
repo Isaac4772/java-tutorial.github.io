@@ -11,17 +11,16 @@
 
 <AnchorPane prefHeight="480.0" prefWidth="513.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.librarymanagement.AddBorrowedBookController">
    <children>
-      <Button fx:id="btn_cate" layoutX="347.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_add_new" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" stylesheets="@../Style/style.css" text="add new" />
       <Label layoutX="347.0" layoutY="396.0" text="Members">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="btn_save" layoutX="138.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_save_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25; -fx-background-color: #00e676;" text="Save" textFill="WHITE" />
-      <Button fx:id="btn_cancel" layoutX="273.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_cancel_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Cancel" />
-      <Button layoutX="206.0" layoutY="427.0" mnemonicParsing="false" onAction="#btn_clear_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Clear" />
-      <ListView fx:id="book_data" layoutX="37.0" layoutY="56.0" prefHeight="334.0" prefWidth="247.0" style="-fx-background-color: transparent;" />
-      <ListView fx:id="member_data" layoutX="284.0" layoutY="56.0" prefHeight="334.0" prefWidth="196.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="btn_save" layoutX="158.0" layoutY="428.0" mnemonicParsing="false" onAction="#btn_save_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25; -fx-background-color: #00e676;" text="Save" textFill="WHITE" />
+      <Button fx:id="btn_cancel" layoutX="293.0" layoutY="428.0" mnemonicParsing="false" onAction="#btn_cancel_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Cancel" />
+      <Button layoutX="226.0" layoutY="428.0" mnemonicParsing="false" onAction="#btn_clear_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Clear" />
+      <ListView fx:id="book_data" layoutX="37.0" layoutY="56.0" prefHeight="334.0" prefWidth="247.0" />
+      <ListView fx:id="member_data" layoutX="284.0" layoutY="56.0" prefHeight="334.0" prefWidth="196.0" />
       <Label layoutX="138.0" layoutY="396.0" text="Books">
          <font>
             <Font name="System Bold" size="16.0" />

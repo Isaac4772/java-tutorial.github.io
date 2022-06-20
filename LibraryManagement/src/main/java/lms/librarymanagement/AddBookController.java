@@ -13,6 +13,7 @@ import lms.librarymanagement.model.entity.Book;
 import lms.librarymanagement.model.entity.Category;
 import lms.librarymanagement.model.services.DatabaseService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
@@ -58,7 +59,7 @@ public class AddBookController extends HomeController implements Initializable {
     
 
     @FXML
-    void btn_add_new(ActionEvent event) {
+    void btn_add_new(ActionEvent event) throws IOException {
 
     }
 
@@ -129,7 +130,7 @@ public class AddBookController extends HomeController implements Initializable {
         alert.setTitle("Message");
         alert.setContentText(msg);
         alert.setHeaderText(null);
-
+        alert.show();
     }
 
     @Override

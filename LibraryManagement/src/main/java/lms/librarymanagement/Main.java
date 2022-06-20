@@ -29,7 +29,7 @@ public class Main extends Application {
         primaryStage = stage;
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Login Page");
+        primaryStage.setTitle("Libraeo");
         primaryStage.show();
     }
 

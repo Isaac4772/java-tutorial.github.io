@@ -6,7 +6,7 @@ public class BorrowedBook {
 	private int id;
 	private int cardId;
 	private int bookId;
-	private LocalDate borrowDate = LocalDate.now();
+	private LocalDate borrowDate;
 	private LocalDate dueDate;
 	private LocalDate returnDate;
 	private int fine;

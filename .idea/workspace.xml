@@ -2,70 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b85ff69d-ae36-463c-9449-5463d0fb6551" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookManagementSystem/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookManagementSystem/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookManagementSystem/BookManagementSystem.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookManagementSystem/build.fxbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookManagementSystem/images/authors.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookManagementSystem/images/book.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookManagementSystem/images/category.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookManagementSystem/mariadb-java-client-2.7.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java_tutorials/src/.metadata/.plugins/org.eclipse.egit.core/.org.eclipse.egit.core.cmp/.org.eclipse.egit.core.cmp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client_2_7_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/src/main/java/bms/model/entity/Author.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/src/main/java/bms/model/entity/Book.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/src/main/java/bms/model/entity/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/src/main/java/bms/model/service/DatabaseService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagementSystem/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagementSystem/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagementSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/AddBookController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/BMS_Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/BMS_Main_Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/BooksController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/EditBookController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/ViewBooksController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/model/entity/Author.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/model/entity/Book.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/model/entity/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/model/service/DatabaseConnection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/bms/bms/model/service/DatabaseService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/resources/bms/bms/AddBook.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/resources/bms/bms/BMS_Main.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/resources/bms/bms/Books.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/resources/bms/bms/EditBook.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/resources/bms/bms/ViewBooks.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/resources/icons/279522980_5020535781328593_4779944717715020021_n.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/resources/icons/authors.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/resources/icons/books.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagementSystem/src/main/resources/icons/categories.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-tutorial.github.io.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-tutorial.github.io.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagementSystem/BookManagementSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagementSystem/BookManagementSystem.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,8 +26,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/javafx-sdk-18.0.1/lib",
-    "project.structure.last.edited": "Libraries",
+    "last_opened_file_path": "D:/java-tutorial.github.io/LibraryManagement",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"

@@ -6,8 +6,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import lms.librarymanagement.model.entity.Librarian;
+import lms.librarymanagement.model.services.DatabaseService;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LoginPageController {
 
@@ -19,30 +22,32 @@ public class LoginPageController {
 
 	@FXML
 	private TextField txt_username;
-	
-	private String username = "admin";
-	private String password = "admin123";
 
 	@FXML
 	void btn_login_onclick() throws IOException {
-		
 
-		if (txt_username.getText().equals(username) && txt_password.getText().equals(password)) {
-			Main.changeScene("home.fxml", "Home", false);
-		} else
-			lbl_error.setText("Username or password is wrong!");
+		List<Librarian> librarians = DatabaseService.getAllLibrarians();
+
+		for (Librarian librarian : librarians) {
+			if (txt_username.getText().equals(librarian.getUsername()) && txt_password.getText().equals(librarian.getPassword())) {
+				System.out.println(librarian.getUsername());
+				System.out.println(librarian.getPassword());
+				Main.changeScene("home.fxml", "Libraeo", false);
+				return;
+			}
+		}
+		lbl_error.setText("Username or password is wrong!");
 	}
-	
-	@FXML
-    void focus_next_textField(KeyEvent event) {
-		if(event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.TAB) 
-			txt_password.requestFocus();
-    }
-	
-	 @FXML
-	    void login_on_enter(KeyEvent event) throws IOException {
-		 	if(event.getCode() == KeyCode.ENTER) 
-		 		btn_login_onclick();
-	    }
 
-}
+		@FXML
+		void focus_next_textField (KeyEvent event){
+			if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.TAB)
+				txt_password.requestFocus();
+		}
+
+		@FXML
+		void login_on_enter (KeyEvent event) throws IOException {
+			if (event.getCode() == KeyCode.ENTER)
+				btn_login_onclick();
+		}
+	}

@@ -1,29 +1,13 @@
 package lms.librarymanagement;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -32,6 +16,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lms.librarymanagement.model.entity.*;
 import lms.librarymanagement.model.services.DatabaseService;
+
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 	@FXML
@@ -89,11 +81,60 @@ public class HomeController implements Initializable {
 	private Button btn_save_cate;
 
 	@FXML
+	private Button btn_update_member;
+
+	@FXML
+	private TableColumn<Member, Year> col_academic_year_mem;
+
+	@FXML
+	private TableColumn<Member, Integer> col_card_id_mem;
+
+	@FXML
+	private TableColumn<Member, LocalDate> col_creation_date_mem;
+
+	@FXML
+	private TableColumn<Member, LocalDate> col_expire_date_mem;
+
+	@FXML
+	private TableColumn<Member, String> col_name_mem;
+
+	@FXML
+	private TableColumn<Member, String> col_roll_no_mem;
+
+	@FXML
+	private DatePicker date_creation_date_mem;
+
+	@FXML
+	private DatePicker date_expire_date_mem;
+
+	@FXML
+	private TextField txt_academic_year_mem;
+
+	@FXML
+	private TextField txt_card_id_mem;
+
+	@FXML
+	private TextField txt_class_year_mem;
+
+	@FXML
+	private TextField txt_name_mem;
+
+	@FXML
+	private TextField txt_roll_no_mem;
+
+	@FXML
+	private TextField txt_search_member;
+	@FXML
+	private Button btn_add_new_member;
+
+	@FXML
 	private ToggleGroup btn_toggle;
 
 	@FXML
 	private Button btn_update_librarian;
 
+	@FXML
+	private Button btn_del_member;
 	@FXML
 	private ComboBox<String> cbo_auth;
 
@@ -150,6 +191,9 @@ public class HomeController implements Initializable {
 
 	@FXML
 	private TableColumn<Librarian, LocalDate> col_creation_date;
+
+	@FXML
+	private TableColumn<Member, String> col_class_year_mem;
 
 	@FXML
 	private TableColumn<BorrowedBook, LocalDate> col_due_date;
@@ -209,7 +253,10 @@ public class HomeController implements Initializable {
 	private Pane pnlHome;
 
 	@FXML
-	private Pane pnlHome1;
+	private Pane pnlLibrarians;
+
+	@FXML
+	private Pane pnlMembers;
 
 	@FXML
 	private TableView<Author> tbl_author;
@@ -228,6 +275,9 @@ public class HomeController implements Initializable {
 
 	@FXML
 	private TableView<Librarian> tbl_librarians;
+
+	@FXML
+	private TableView<Member> tbl_members;
 
 	@FXML
 	private TextField txt_author_country;
@@ -284,23 +334,52 @@ public class HomeController implements Initializable {
 	private static Author author;
 	private static Category category;
 
+	private static Member member;
+	private static Librarian librarian;
+
 	private static List<Book> bookItems;
 	private static List<BorrowedBook> borrowedBooks;
 	private static List<BorrowedBook> unreturnedBooks;
+	private static List<Librarian> librarians;
 
+	private static List<Member> members;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		loadCategories();
 		loadAuthors();
 		loadBooks();
-		initializeCol(); // For Books table
+		loadLibrarians();
+		loadMembers();
+		initializeCol(bookItems); // For Books table
 		loadBorrowedBooks();
-		initializeCol1(); // For Borrow History table
+		initializeCol1(borrowedBooks); // For Borrow History table
 		loadUnreturnedBooks();
-		initializeCol2(); // For Unreturned (Borrowed) Book table
+		initializeCol2(unreturnedBooks); // For Unreturned (Borrowed) Book table
 		checkReturnDate(); // Check if return date of borrow books are over due date and add fine
-		initializeColAuthTbl();
-		initializeColCateTbl();
+		initializeColAuthTbl(authorList);
+		initializeColCateTbl(categoryList);
+		initializeColLibrarians(librarians);
+		initializeColMembers(members);
+	}
+
+	private void loadMembers() {
+		members = DatabaseService.getAllMembers();
+	}
+
+	private void initializeColMembers(List<Member> members) {
+		col_card_id_mem.setCellValueFactory(new PropertyValueFactory<>("cardId"));
+		col_name_mem.setCellValueFactory(new PropertyValueFactory<>("name"));
+		col_roll_no_mem.setCellValueFactory(new PropertyValueFactory<>("rollNo"));
+		col_academic_year_mem.setCellValueFactory(new PropertyValueFactory<>("academicYear"));
+		col_class_year_mem.setCellValueFactory(new PropertyValueFactory<>("classYear"));
+		col_creation_date_mem.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+		col_expire_date_mem.setCellValueFactory(new PropertyValueFactory<>("expireAt"));
+		tbl_members.setItems(FXCollections.observableArrayList(members));
+
+	}
+
+	private void loadLibrarians() {
+		librarians = DatabaseService.getAllLibrarians();
 	}
 
 	private void checkReturnDate() {
@@ -309,26 +388,26 @@ public class HomeController implements Initializable {
 				.toList();
 		DatabaseService.addFine(booksOverDue);
 		loadBorrowedBooks();
-		initializeCol1();
+		initializeCol1(borrowedBooks);
 		loadUnreturnedBooks();
-		initializeCol2();
+		initializeCol2(unreturnedBooks);
 	}
 
 	private void loadUnreturnedBooks() {
 		unreturnedBooks = DatabaseService.getUnreturnedBooks();
 	}
 
-	private void initializeCol() {
+	private void initializeCol(List<Book> books) {
 		col_code.setCellValueFactory(new PropertyValueFactory<>("code"));
 		col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
 		col_pub_date.setCellValueFactory(new PropertyValueFactory<>("publishedDate"));
 		col_author.setCellValueFactory(new PropertyValueFactory<>("authorName"));
 		col_cate.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
 		col_avail.setCellValueFactory(new PropertyValueFactory<>("isAvailable"));
-		tbl_data.setItems(FXCollections.observableArrayList(bookItems));
+		tbl_data.setItems(FXCollections.observableArrayList(books));
 	}
 
-	private void initializeCol1() {
+	private void initializeCol1(List<BorrowedBook> books) {
 		col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		col_card_id.setCellValueFactory(new PropertyValueFactory<>("cardId"));
 		col_book_id.setCellValueFactory(new PropertyValueFactory<>("bookId"));
@@ -336,30 +415,40 @@ public class HomeController implements Initializable {
 		col_due_date.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 		col_return_date.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
 		col_fine.setCellValueFactory(new PropertyValueFactory<>("fine"));
-		tbl_data1.setItems(FXCollections.observableArrayList(borrowedBooks));
+		tbl_data1.setItems(FXCollections.observableArrayList(books));
 	}
 
-	private void initializeCol2() {
+	private void initializeCol2(List<BorrowedBook> books) {
 		col_id1.setCellValueFactory(new PropertyValueFactory<>("id"));
 		col_card_id1.setCellValueFactory(new PropertyValueFactory<>("cardId"));
 		col_book_id1.setCellValueFactory(new PropertyValueFactory<>("bookId"));
 		col_borrowed_date1.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
 		col_due_date1.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 		col_fine1.setCellValueFactory(new PropertyValueFactory<>("fine"));
-		tbl_data2.setItems(FXCollections.observableArrayList(unreturnedBooks));
+		tbl_data2.setItems(FXCollections.observableArrayList(books));
 	}
 
-	private void initializeColAuthTbl() {
+	private void initializeColAuthTbl(List<Author> authors) {
 		col_author_id.setCellValueFactory(new PropertyValueFactory<>("author_id"));
 		col_author_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		col_author_country.setCellValueFactory(new PropertyValueFactory<>("country"));
-		tbl_author.setItems(FXCollections.observableArrayList(authorList));
+		tbl_author.setItems(FXCollections.observableArrayList(authors));
 	}
 
-	private void initializeColCateTbl() {
+	private void initializeColCateTbl(List<Category> categories) {
 		col_cate_id.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 		col_cate_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-		tbl_cate.setItems(FXCollections.observableArrayList(categoryList));
+		tbl_cate.setItems(FXCollections.observableArrayList(categories));
+	}
+
+	private void initializeColLibrarians(List<Librarian> librarians){
+		col_id_librarian.setCellValueFactory(new PropertyValueFactory<>("id"));
+		col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+		col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
+		col_nrc_no.setCellValueFactory(new PropertyValueFactory<>("nrcNo"));
+		col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+		col_creation_date.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+		tbl_librarians.setItems(FXCollections.observableArrayList(librarians));
 	}
 
 	@FXML
@@ -379,7 +468,7 @@ public class HomeController implements Initializable {
 		FXMLLoader loader = new FXMLLoader(Main.class.getResource("addBorrowedBook.fxml"));
 		Scene scene = new Scene(loader.load());
 		stage.setScene(scene);
-		stage.setTitle("Add Book");
+		stage.setTitle("Add Borrowed Book");
 		stage.setResizable(false);
 		stage.show();
 	}
@@ -408,7 +497,7 @@ public class HomeController implements Initializable {
 					showAlert(AlertType.INFORMATION, "Book Deleted");
 					initialize(null, null);
 				} else {
-					showAlert("Book Deletion failed", "This book is borrowed by a member");
+					showAlert(AlertType.ERROR, "This book is borrowed by a member");
 				}
 			} else {
 				alert.close();
@@ -470,7 +559,7 @@ public class HomeController implements Initializable {
 			cbo_cate.getSelectionModel().clearSelection();
 			cbo_pub_date.setValue(null);
 		} else {
-			showAlert("Cannot Update Book", "Something went wrong");
+			showAlert(AlertType.ERROR, "Something went wrong");
 		}
 	}
 
@@ -489,16 +578,14 @@ public class HomeController implements Initializable {
 
 	private void showAlert(Alert.AlertType type, String header) {
 		Alert alert = new Alert(type);
-		alert.setTitle("Message");
 		alert.setHeaderText(header);
 		alert.show();
 	}
 
-	private void showAlert(String header, String msg) {
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Message");
-		alert.setContentText(msg);
+	private void showAlert(Alert.AlertType type, String header, String message) {
+		Alert alert = new Alert(type);
 		alert.setHeaderText(header);
+		alert.setContentText(message);
 		alert.show();
 	}
 
@@ -535,9 +622,13 @@ public class HomeController implements Initializable {
 			});
 
 		} else if (actionEvent.getSource() == btnMembers) {
+			initialize(null, null
+			);
+			pnlMembers.toFront();
 
 		} else if (actionEvent.getSource() == btnLibrarians) {
-
+			initialize(null, null);
+			pnlLibrarians.toFront();
 		}
 
 	}
@@ -610,16 +701,10 @@ public class HomeController implements Initializable {
 						bookList.add(book);
 				}
 			}
-			if (bookList.size() > 0) { // check if searched results exist
-				col_code.setCellValueFactory(new PropertyValueFactory<>("code"));
-				col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
-				col_pub_date.setCellValueFactory(new PropertyValueFactory<>("publishedDate"));
-				col_author.setCellValueFactory(new PropertyValueFactory<>("authorName"));
-				col_cate.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
-				col_avail.setCellValueFactory(new PropertyValueFactory<>("isAvailable"));
-				tbl_data.setItems(FXCollections.observableArrayList(bookList));
-			} else
-				initializeCol();
+			if (bookList.size() > 0) // check if searched results exist
+				initializeCol(bookList);
+			else
+				initializeCol(bookItems);
 		}
 	}
 
@@ -656,17 +741,10 @@ public class HomeController implements Initializable {
 						bBookList.add(bBook);
 
 			}
-			if (bBookList.size() > 0) { // check if search results exist
-				col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-				col_card_id.setCellValueFactory(new PropertyValueFactory<>("cardId"));
-				col_book_id.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-				col_borrowed_date.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
-				col_due_date.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-				col_return_date.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
-				col_fine.setCellValueFactory(new PropertyValueFactory<>("fine"));
-				tbl_data1.setItems(FXCollections.observableArrayList(bBookList));
-			} else
-				initializeCol1();
+			if (bBookList.size() > 0)  // check if search results exist
+				initializeCol1(bBookList);
+			else
+				initializeCol1(borrowedBooks);
 		}
 	}
 
@@ -700,15 +778,9 @@ public class HomeController implements Initializable {
 
 			}
 			if (bBookList.size() > 0) { // check if search results exist
-				col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-				col_card_id.setCellValueFactory(new PropertyValueFactory<>("cardId"));
-				col_book_id.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-				col_borrowed_date.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
-				col_due_date.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-				col_fine.setCellValueFactory(new PropertyValueFactory<>("fine"));
-				tbl_data2.setItems(FXCollections.observableArrayList(bBookList));
+				initializeCol2(bBookList);
 			} else
-				initializeCol2();
+				initializeCol2(unreturnedBooks);
 		}
 	}
 
@@ -736,7 +808,7 @@ public class HomeController implements Initializable {
 			txt_author_name.clear();
 			txt_author_country.clear();
 		} else {
-			showAlert("Cannot Update Author", "Something went wrong");
+			showAlert(AlertType.ERROR, "Something went wrong");
 		}
 	}
 
@@ -755,7 +827,7 @@ public class HomeController implements Initializable {
 			initialize(null, null);
 			txt_cate_name.clear();
 		} else {
-			showAlert("Cannot Update Category", "Something went wrong");
+			showAlert(AlertType.ERROR, "Something went wrong");
 		}
 	}
 
@@ -784,7 +856,7 @@ public class HomeController implements Initializable {
 			txt_author_name.clear();
 			txt_author_country.clear();
 		} else {
-			showAlert("Cannot Update Author", "Something went wrong");
+			showAlert(AlertType.ERROR, "Something went wrong");
 		}
 	}
 
@@ -806,7 +878,7 @@ public class HomeController implements Initializable {
 			txt_cate_name.clear();
 		}
 		else {
-			showAlert("Cannot add new category", "Something went wrong");
+			showAlert(AlertType.ERROR, "Something went wrong");
 		}
 	}
 
@@ -826,16 +898,13 @@ public class HomeController implements Initializable {
 					if(name.contains(search) && !authors.contains(auth))
 						authors.add(auth);
 
-					if(name.contains(search) && !authors.contains(auth))
+					if(country.contains(search) && !authors.contains(auth))
 						authors.add(auth);
 
-				if (authors.size() > 0) { // check if search results exist
-					col_author_id.setCellValueFactory(new PropertyValueFactory<>("author_id"));
-					col_author_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-					col_author_country.setCellValueFactory(new PropertyValueFactory<>("country"));
-					tbl_author.setItems(FXCollections.observableArrayList(authors));
-				} else
-					initializeColAuthTbl();
+				if (authors.size() > 0)  // check if search results exist
+					initializeColAuthTbl(authors);
+				else
+					initializeColAuthTbl(authorList);
 			}
 		}
 	}
@@ -850,47 +919,221 @@ public class HomeController implements Initializable {
 				String id = String.valueOf(cate.getCategoryId());
 				String name = cate.getName().toLowerCase();
 
-
 					if(id.contains(search) && !categories.contains(cate))
 						categories.add(cate);
 
 					if(name.contains(search) && !categories.contains(cate))
 						categories.add(cate);
 
-
-				if (categories.size() > 0) { // check if search results exist
-					col_cate_id.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
-					col_cate_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-					tbl_cate.setItems(FXCollections.observableArrayList(categories));
-				} else
-					initializeColCateTbl();
+				if (categories.size() > 0)  // check if search results exist
+					initializeColCateTbl(categories);
+				else
+					initializeColCateTbl(categoryList);
 			}
 		}
 	}
 
 	@FXML
 	void searchLibrarian(KeyEvent event) {
+		if(event.getCode() == KeyCode.ENTER){
+			List<Librarian> librarianList = new ArrayList<>();
+			String search = txt_search_librarian.getText().toLowerCase();
+			System.out.println(search);
+			for(Librarian lib : librarians){
+				String id = String.valueOf(lib.getId());
+				String username = lib.getUsername().toLowerCase();
+				String nrcNo = lib.getNrcNo().toLowerCase();
+				String phone = lib.getPhone();
+				String creationDate = String.valueOf(lib.getCreatedAt());
 
+
+				if(id.contains(search) && !librarianList.contains(lib))
+					librarianList.add(lib);
+				if(username.contains(search) && !librarianList.contains(lib))
+					librarianList.add(lib);
+				if(nrcNo.contains(search) && !librarianList.contains(lib))
+					librarianList.add(lib);
+				if(phone.contains(search) && !librarianList.contains(lib))
+					librarianList.add(lib);
+				if(creationDate.contains(search) && !librarianList.contains(lib))
+					librarianList.add(lib);
+
+
+				if (librarianList.size() > 0) // check if search results exist
+					initializeColLibrarians(librarianList);
+				 else
+					initializeColLibrarians(librarians);
+			}
+		}
 	}
 
 	@FXML
 	void btn_update_on_click_librarian(ActionEvent event) {
 
+		librarian.setUsername(txt_username.getText());
+		librarian.setPassword(txt_password.getText());
+		librarian.setNrcNo(txt_nrc_no.getText());
+		librarian.setPhone(txt_phone.getText());
+		librarian.setCreatedAt(date_creation_date.getValue());
+
+		if(DatabaseService.updateLibrarian(librarian)){
+			showAlert(AlertType.INFORMATION, "Librarian updated");
+			initialize(null, null);
+		}else{
+			showAlert(AlertType.ERROR, "Something went wrong");
+		}
 	}
 
 	@FXML
 	void btn_del_on_click_librarian(ActionEvent event) {
+		if(DatabaseService.deleteLibrarian(librarian.getId())){
+			showAlert(AlertType.INFORMATION, "Librarian deleted");
+			initialize(null, null);
+		}else
+			showAlert(AlertType.ERROR, "Something went wrong");
+	}
+
+	@FXML
+	void btn_add_new_on_click_member(ActionEvent event) throws IOException {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("addMember.fxml"));
+		Scene scene = new Scene(loader.load());
+		stage.setScene(scene);
+		stage.setTitle("Add Librarian");
+		stage.setResizable(false);
+		stage.show();
 
 	}
 
 	@FXML
-	void btn_add_new_on_click_librarian(ActionEvent event) {
+	void btn_update_on_click_member(ActionEvent event) {
+		member.setName(txt_name_mem.getText());
+		member.setRollNo(txt_roll_no_mem.getText());
+		member.setAcademicYear(Year.parse(txt_academic_year_mem.getText()));
+		member.setClassYear(txt_class_year_mem.getText());
+		member.setCreatedAt(date_creation_date_mem.getValue());
+		member.setExpireAt(date_expire_date_mem.getValue());
+		if(DatabaseService.updateMember(member)){
+			showAlert(AlertType.INFORMATION, "Member updated");
+			initialize(null, null);
+		}
+		else{
+			showAlert(AlertType.ERROR, "Something went wrong");
+		}
+	}
 
+	@FXML
+	void searchMember(KeyEvent event) {
+		if(event.getCode() == KeyCode.ENTER){
+			List<Member> memberList = new ArrayList<>();
+			String search = txt_search_member.getText().toLowerCase();
+			System.out.println(search);
+			for(Member mem : members){
+				String name = mem.getName().toLowerCase();
+				String rollNo = mem.getRollNo().toLowerCase();
+				String classYear = mem.getClassYear().toLowerCase();
+				String academicYear = String.valueOf(mem.getAcademicYear());
+				String creationDate = String.valueOf(mem.getCreatedAt());
+				String expireDate = String.valueOf(mem.getExpireAt());
+
+				if(name.contains(search) && !memberList.contains(mem))
+					memberList.add(mem);
+				if(rollNo.contains(search) && !memberList.contains(mem))
+					memberList.add(mem);
+				if(classYear.contains(search) && !memberList.contains(mem))
+					memberList.add(mem);
+				if(academicYear.contains(search) && !memberList.contains(mem))
+					memberList.add(mem);
+				if(creationDate.contains(search) && !memberList.contains(mem))
+					memberList.add(mem);
+				if(expireDate.contains(search) && !memberList.contains(mem))
+					memberList.add(mem);
+
+
+				if (memberList.size() > 0) // check if search results exist
+					initializeColMembers(memberList);
+				else
+					initializeColMembers(members);
+			}
+		}
+
+	}
+
+	@FXML
+	void btn_del_on_click_member(ActionEvent event){
+
+
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Delete Book?");
+		alert.setContentText("Are you sure you want to delete this book?");
+		ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+		ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+		alert.getButtonTypes().setAll(okButton, noButton);
+		alert.showAndWait().ifPresent(type -> {
+			boolean hasNotReturned = false;
+
+			if (type == okButton) {
+				for(BorrowedBook borrowedBook: unreturnedBooks){
+					if(borrowedBook.getCardId() == member.getCardId()) {
+						hasNotReturned = true;
+						break;
+					}
+				}
+				if(!hasNotReturned){
+					if(DatabaseService.deleteMember(member.getCardId())){
+						showAlert(AlertType.INFORMATION, "Member Deleted");
+						initialize(null, null);
+					}
+					else{
+						showAlert(AlertType.ERROR, "Something went wrong");
+					}
+				}
+				else{
+					showAlert(AlertType.INFORMATION, "Cannot Delete members.", "This member hasn't returned books yet.");
+				}
+			} else {
+				alert.close();
+			}
+		});
+
+
+
+	}
+
+	@FXML
+	void click_item_member(MouseEvent event) {
+		member = tbl_members.getSelectionModel().getSelectedItem();
+		System.out.println(member);
+		txt_card_id_mem.setText(String.valueOf(member.getCardId()));
+		txt_name_mem.setText(member.getName());
+		txt_roll_no_mem.setText(member.getRollNo());
+		txt_academic_year_mem.setText(String.valueOf(member.getAcademicYear()));
+		txt_class_year_mem.setText(member.getClassYear());
+		date_creation_date_mem.setValue(member.getCreatedAt());
+		date_expire_date_mem.setValue(member.getExpireAt());
+	}
+
+	@FXML
+	void btn_add_new_on_click_librarian(ActionEvent event) throws IOException {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("addLibrarian.fxml"));
+		Scene scene = new Scene(loader.load());
+		stage.setScene(scene);
+		stage.setTitle("Add Librarian");
+		stage.setResizable(false);
+		stage.show();
 	}
 
 	@FXML
 	void click_item_librarian(MouseEvent event) {
-
+		librarian = tbl_librarians.getSelectionModel().getSelectedItem();
+		System.out.println(librarian);
+		txt_id.setText(String.valueOf(librarian.getId()));
+		txt_username.setText(librarian.getUsername());
+		txt_password.setText(librarian.getPassword());
+		txt_nrc_no.setText(librarian.getNrcNo());
+		txt_phone.setText(librarian.getPhone());
+		date_creation_date.setValue(librarian.getCreatedAt());
 	}
 
 }

@@ -211,7 +211,7 @@ public class DatabaseService {
 	public static List<Member> getAllMembers() {
 		List<Member> memberList = new ArrayList<>();
 		try (Connection connection = MyConnection.getConnection()) {
-			String query = "SELECT * FROM members";
+			String query = "SELECT * FROM members ";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
@@ -221,10 +221,11 @@ public class DatabaseService {
 				member.setRollNo(resultSet.getString("roll_no"));
 				member.setAcademicYear(Year.parse(resultSet.getString("academic_year")));
 				member.setClassYear(resultSet.getString("class_year"));
-				member.setCreatedAt(LocalDate.parse(resultSet.getString("created_at")));
-				member.setExpireAt(LocalDate.parse(resultSet.getString("expire_at")));
+				member.setCreatedAt(LocalDate.parse(resultSet.getString("register_date")));
+				member.setExpireAt(LocalDate.parse(resultSet.getString("expire_date")));
 				memberList.add(member);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -235,8 +236,8 @@ public class DatabaseService {
 		boolean added = false;
 		try (Connection connection = MyConnection.getConnection()) {
 			String query = """
-					INSERT INTO `borrow_books`(`card_id`, `book_id`, `due_date`)
-					VALUES (?,?,?)
+					INSERT INTO `borrow_books`(`card_id`, `book_id`,`borrow_date` ,`due_date`)
+					VALUES (?,?,?,?)
 					""";
 
 			String query2 = """
@@ -245,7 +246,8 @@ public class DatabaseService {
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, book.getCardId());
 			preparedStatement.setInt(2, book.getBookId());
-			preparedStatement.setDate(3, Date.valueOf(book.getBorrowDate().plusDays(7)));
+			preparedStatement.setDate(3, Date.valueOf(book.getBorrowDate()));
+			preparedStatement.setDate(4, Date.valueOf(book.getBorrowDate().plusDays(7)));
 			preparedStatement.executeQuery();
 
 			PreparedStatement preparedStatement2 = connection.prepareStatement(query2);
@@ -426,4 +428,155 @@ public class DatabaseService {
 		return added;
 	}
 
+    public static List<Librarian> getAllLibrarians() {
+		List<Librarian> librarians = new ArrayList<>();
+		try(Connection connection = MyConnection.getConnection()){
+			String query = "SELECT * FROM librarians";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			ResultSet resultSet =  preparedStatement.executeQuery();
+			while (resultSet.next()){
+				Librarian librarian = new Librarian();
+				librarian.setId(resultSet.getInt("id"));
+				librarian.setUsername(resultSet.getString("username"));
+				librarian.setPassword(resultSet.getString("password"));
+				librarian.setNrcNo(resultSet.getString("nrcno"));
+				librarian.setPhone(resultSet.getString("phone"));
+				librarian.setCreatedAt(LocalDate.parse(resultSet.getString("created_at")));
+				librarians.add(librarian);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return librarians;
+    }
+
+	public static boolean updateLibrarian(Librarian librarian) {
+		boolean updated = false;
+			try (Connection connection = MyConnection.getConnection()){
+				String query = """
+      					UPDATE `librarians` SET `username`=?,`password`=?,`nrcno`=?,`phone`=?,`created_at`=? WHERE `id`=?
+						""";
+				PreparedStatement preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1,librarian.getUsername());
+				preparedStatement.setString(2, librarian.getPassword());
+				preparedStatement.setString(3, librarian.getNrcNo());
+				preparedStatement.setString(4, librarian.getPhone());
+				preparedStatement.setDate(5, Date.valueOf(librarian.getCreatedAt()));
+				preparedStatement.setInt(6, librarian.getId());
+				preparedStatement.executeUpdate();
+				updated = true;
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+
+		return updated;
+	}
+
+	public static boolean deleteLibrarian(int id) {
+		boolean deleted = false;
+		try(Connection connection = MyConnection.getConnection()){
+			String query = "DELETE FROM `librarians` WHERE id=?";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			deleted = true;
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		return deleted;
+	}
+
+	public static boolean addLibrarian(Librarian librarian) {
+		boolean added = false;
+		try(Connection connection = MyConnection.getConnection()){
+			String query = """
+					INSERT INTO `librarians`(`username`, `password`, `nrcno`, `phone`, `created_at`) VALUES (?,?,?,?,?)
+					""";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, librarian.getUsername());
+			preparedStatement.setString(2, librarian.getPassword());
+			preparedStatement.setString(3, librarian.getNrcNo());
+			preparedStatement.setString(4, librarian.getPhone());
+			preparedStatement.setDate(5, Date.valueOf(librarian.getCreatedAt()));
+			preparedStatement.executeUpdate();
+			added = true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return added;
+	}
+
+	public static boolean updateMember(Member member) {
+		boolean updated = false;
+		try(Connection connection = MyConnection.getConnection()){
+			String query = """
+     					UPDATE `members` SET `name`=?,`roll_no`=?,`academic_year`=?,
+     					`class_year`=?,`register_date`=?,`expire_date`=? WHERE `card_id`=?
+					""";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, member.getName());
+			preparedStatement.setString(2, member.getRollNo());
+			preparedStatement.setString(3, String.valueOf(member.getAcademicYear()));
+			preparedStatement.setString(4, member.getClassYear());
+			preparedStatement.setDate(5, Date.valueOf(member.getCreatedAt()));
+			preparedStatement.setDate(6, Date.valueOf(member.getExpireAt()));
+			preparedStatement.setInt(7, member.getCardId());
+
+			preparedStatement.executeUpdate();
+			updated = true;
+
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		return updated;
+	}
+
+	public static boolean deleteMember(int cardId) {
+		boolean deleted = false;
+		try(Connection connection = MyConnection.getConnection()){
+			String query1 = "DELETE FROM borrow_books WHERE card_Id=?";
+			String query = "DELETE FROM members WHERE card_id=?";
+			PreparedStatement preparedStatement1 = connection.prepareStatement(query1);
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement1.setInt(1, cardId);
+			preparedStatement.setInt(1, cardId);
+			preparedStatement1.executeUpdate();
+			preparedStatement.executeUpdate();
+			deleted = true;
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return deleted;
+	}
+
+	public static boolean addMember(Member member) {
+		boolean added = false;
+			try(Connection connection = MyConnection.getConnection()){
+				String query = """
+      					INSERT INTO `members`(`name`, `roll_no`, `academic_year`, `class_year`, `register_date`, `expire_date`)
+      					VALUES (?,?,?,?,?,?)
+						""";
+				PreparedStatement preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1, member.getName());
+				preparedStatement.setString(2, member.getRollNo());
+				preparedStatement.setString(3, String.valueOf(member.getAcademicYear()));
+				preparedStatement.setString(4, member.getClassYear());
+				preparedStatement.setDate(5, Date.valueOf(member.getCreatedAt()));
+				preparedStatement.setDate(6, Date.valueOf(member.getExpireAt()));
+				preparedStatement.executeUpdate();
+				added = true;
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+		return added;
+	}
 }

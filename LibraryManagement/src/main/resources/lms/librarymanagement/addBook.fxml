@@ -8,12 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="337.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.librarymanagement.AddBookController">
+<AnchorPane prefHeight="337.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.librarymanagement.AddBookController">
     <TextField fx:id="txt_title" layoutX="204.0" layoutY="73.0" prefHeight="20.0" prefWidth="158.0" style="-fx-background-radius: 25; -fx-border-color: #B7C3D7; -fx-border-radius: 25;" />
     <ComboBox fx:id="cbo_cate" layoutX="204.0" layoutY="121.0" prefHeight="25.0" prefWidth="158.0" promptText="Choose category" style="-fx-background-color: #DBDFFD; -fx-background-radius: 25;" />
     <ComboBox fx:id="cbo_auth" layoutX="204.0" layoutY="167.0" prefHeight="25.0" prefWidth="158.0" promptText="Choose author" style="-fx-background-color: #DBDFFD; -fx-background-radius: 25;" />
-    <Button fx:id="btn_cate" layoutX="375.0" layoutY="122.0" mnemonicParsing="false" onAction="#btn_add_new" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" stylesheets="@../Style/style.css" text="add new" />
-    <Button fx:id="btn_auth" layoutX="375.0" layoutY="168.0" mnemonicParsing="false" onAction="#btn_add_new" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" stylesheets="@../Style/style.css" text="add new" />
     <DatePicker fx:id="cbo_pub_date" layoutX="204.0" layoutY="209.0" prefHeight="25.0" prefWidth="158.0" style="-fx-border-color: #DBDFFD;" />
     <Label layoutX="96.0" layoutY="76.0" text="Title">
         <font>

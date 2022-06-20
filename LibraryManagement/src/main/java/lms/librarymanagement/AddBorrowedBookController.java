@@ -1,6 +1,7 @@
 package lms.librarymanagement;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -65,13 +66,14 @@ public class AddBorrowedBookController implements Initializable {
 
 	@FXML
 	void btn_save_on_click(ActionEvent event) {
-		BorrowedBook Bbook = new BorrowedBook();
+		BorrowedBook bBook = new BorrowedBook();
 		int bookIndex = book_data.getSelectionModel().getSelectedIndex();
 		int memberIndex = member_data.getSelectionModel().getSelectedIndex();
 
-		Bbook.setBookId(bookList.get(bookIndex).getCode());
-		Bbook.setCardId(memberList.get(memberIndex).getCardId());
-		if (DatabaseService.addNewBorrowedBook(Bbook)) {
+		bBook.setBookId(bookList.get(bookIndex).getCode());
+		bBook.setCardId(memberList.get(memberIndex).getCardId());
+		bBook.setBorrowDate(LocalDate.now());
+		if (DatabaseService.addNewBorrowedBook(bBook)) {
 			Stage stage = (Stage) btn_save.getScene().getWindow();
 			stage.close();
 			showAlert(Alert.AlertType.INFORMATION, "A new borrowed book is added");
@@ -124,11 +126,11 @@ public class AddBorrowedBookController implements Initializable {
 				String code = String.valueOf(book.getCode());
 				String title = String.valueOf(book.getTitle()).toLowerCase();
 				
-				if (code != null && code.contains(search)) {
+				if (code.contains(search)) {
 					if (!bookResults.contains(book))
 						bookResults.add(book);
 				}
-				if (title != null && title.contains(search)) {
+				if (title.contains(search)) {
 					if (!bookResults.contains(book))
 						bookResults.add(book);
 				}
@@ -154,11 +156,11 @@ public class AddBorrowedBookController implements Initializable {
 				String cardId = String.valueOf(member.getCardId());
 				String memberName = member.getName().toLowerCase();
 				
-				if (cardId != null && cardId.contains(search)) {
+				if (cardId.contains(search)) {
 					if (!memberResults.contains(member))
 						memberResults.add(member);
 				}
-				if (memberName != null && memberName.contains(search)) {
+				if (memberName.contains(search)) {
 					if (!memberResults.contains(member))
 						memberResults.add(member);
 				}
