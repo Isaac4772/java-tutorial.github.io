@@ -1,4 +1,5 @@
 package lms.librarymanagement.model.entity;
+
 import java.time.LocalDate;
 
 public class Book {
@@ -56,11 +57,12 @@ public class Book {
     public void setIsAvailable(int isAvailable) {
         this.isAvailable = isAvailable;
     }
-    
+
     public String getAuthorName() {
-    	return getAuthor().getName();
+        return getAuthor().getName();
     }
+
     public String getCategoryName() {
-    	return getCategory().getName();
+        return getCategory().getName();
     }
 }

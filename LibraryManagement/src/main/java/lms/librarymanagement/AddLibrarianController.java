@@ -54,13 +54,13 @@ public class AddLibrarianController {
         String phone = txt_phone.getText();
         LocalDate creationDate = LocalDate.now();
 
-        if(username.isEmpty())
+        if (username.isEmpty())
             showAlert(Alert.AlertType.WARNING, "Please enter username");
-        else if(password.isEmpty())
+        else if (password.isEmpty())
             showAlert(Alert.AlertType.WARNING, "Please enter password");
-        else if(nrcNo.isEmpty())
+        else if (nrcNo.isEmpty())
             showAlert(Alert.AlertType.WARNING, "Please enter Nrc Number");
-        else if(phone.isEmpty())
+        else if (phone.isEmpty())
             showAlert(Alert.AlertType.WARNING, "Please enter phone number");
 
         librarian.setUsername(username);
@@ -69,7 +69,7 @@ public class AddLibrarianController {
         librarian.setPhone(phone);
         librarian.setCreatedAt(creationDate);
 
-        if(DatabaseService.addLibrarian(librarian)){
+        if (DatabaseService.addLibrarian(librarian)) {
             showAlert(Alert.AlertType.INFORMATION, "A new librarian added");
             Stage stage = (Stage) btn_save.getScene().getWindow();
             stage.close();

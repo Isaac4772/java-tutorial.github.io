@@ -21,6 +21,9 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    public static void main(String[] args) {
+        launch();
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -31,9 +34,5 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setTitle("Libraeo");
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }

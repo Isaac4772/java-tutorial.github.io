@@ -71,20 +71,20 @@ public class AddBookController extends HomeController implements Initializable {
         int category_index = cbo_cate.getSelectionModel().getSelectedIndex();
         int available = 1;
 
-        if(title.isEmpty()) {
-            showAlert(AlertType.WARNING,"Please enter title");
+        if (title.isEmpty()) {
+            showAlert(AlertType.WARNING, "Please enter title");
             return;
         }
-        if(pub_date == null) {
-            showAlert(AlertType.WARNING,"Please setup publish date");
+        if (pub_date == null) {
+            showAlert(AlertType.WARNING, "Please setup publish date");
             return;
         }
-        if(author_index == -1) {
-            showAlert(AlertType.WARNING,"Please choose author");
+        if (author_index == -1) {
+            showAlert(AlertType.WARNING, "Please choose author");
             return;
         }
-        if(category_index == -1) {
-            showAlert(AlertType.WARNING,"Please choose category");
+        if (category_index == -1) {
+            showAlert(AlertType.WARNING, "Please choose category");
             return;
         }
 
@@ -96,19 +96,20 @@ public class AddBookController extends HomeController implements Initializable {
         book.setIsAvailable(available);
 
         System.out.println(book.getTitle());
-        System.out.println(book.getCategory().getCategoryId()+". "+book.getCategory().getName());
-        System.out.println(book.getAuthor().getAuthor_id()+". " +book.getAuthor().getName());
+        System.out.println(book.getCategory().getCategoryId() + ". " + book.getCategory().getName());
+        System.out.println(book.getAuthor().getAuthor_id() + ". " + book.getAuthor().getName());
         System.out.println(book.getIsAvailable());
         System.out.println(book.getPublishedDate());
 
-        if(DatabaseService.addNewBook(book)) {
+        if (DatabaseService.addNewBook(book)) {
             Stage stage = (Stage) btn_save.getScene().getWindow();
             stage.close();
             showAlert(Alert.AlertType.INFORMATION, "A new book is added");
-        }else {
+        } else {
             showAlert(Alert.AlertType.ERROR, "Something is wrong");
         }
     }
+
     private void showAlert(Alert.AlertType type, String msg) {
         Alert alert = new Alert(type);
         alert.setTitle("Message");

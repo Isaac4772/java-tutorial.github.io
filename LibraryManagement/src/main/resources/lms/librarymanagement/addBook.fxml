@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="337.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lms.librarymanagement.AddBookController">
-    <TextField fx:id="txt_title" layoutX="204.0" layoutY="73.0" prefHeight="20.0" prefWidth="158.0" style="-fx-background-radius: 25; -fx-border-color: #B7C3D7; -fx-border-radius: 25;" />
-    <ComboBox fx:id="cbo_cate" layoutX="204.0" layoutY="121.0" prefHeight="25.0" prefWidth="158.0" promptText="Choose category" style="-fx-background-color: #DBDFFD; -fx-background-radius: 25;" />
-    <ComboBox fx:id="cbo_auth" layoutX="204.0" layoutY="167.0" prefHeight="25.0" prefWidth="158.0" promptText="Choose author" style="-fx-background-color: #DBDFFD; -fx-background-radius: 25;" />
-    <DatePicker fx:id="cbo_pub_date" layoutX="204.0" layoutY="209.0" prefHeight="25.0" prefWidth="158.0" style="-fx-border-color: #DBDFFD;" />
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="337.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="lms.librarymanagement.AddBookController">
+    <TextField fx:id="txt_title" layoutX="204.0" layoutY="73.0" prefHeight="20.0" prefWidth="158.0"
+               style="-fx-background-radius: 25; -fx-border-color: #B7C3D7; -fx-border-radius: 25;"/>
+    <ComboBox fx:id="cbo_cate" layoutX="204.0" layoutY="121.0" prefHeight="25.0" prefWidth="158.0"
+              promptText="Choose category" style="-fx-background-color: #DBDFFD; -fx-background-radius: 25;"/>
+    <ComboBox fx:id="cbo_auth" layoutX="204.0" layoutY="167.0" prefHeight="25.0" prefWidth="158.0"
+              promptText="Choose author" style="-fx-background-color: #DBDFFD; -fx-background-radius: 25;"/>
+    <DatePicker fx:id="cbo_pub_date" layoutX="204.0" layoutY="209.0" prefHeight="25.0" prefWidth="158.0"
+                style="-fx-border-color: #DBDFFD;"/>
     <Label layoutX="96.0" layoutY="76.0" text="Title">
         <font>
-            <Font size="14.0" />
+            <Font size="14.0"/>
         </font>
     </Label>
     <Label layoutX="95.0" layoutY="124.0" text="Category">
         <font>
-            <Font size="14.0" />
+            <Font size="14.0"/>
         </font>
     </Label>
     <Label layoutX="95.0" layoutY="170.0" text="Author">
         <font>
-            <Font size="14.0" />
+            <Font size="14.0"/>
         </font>
     </Label>
     <Label layoutX="96.0" layoutY="213.0" text="Published Date">
         <font>
-            <Font size="14.0" />
+            <Font size="14.0"/>
         </font>
     </Label>
-    <Button fx:id="btn_save" layoutX="160.0" layoutY="258.0" mnemonicParsing="false" onAction="#btn_save_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25; -fx-background-color: #00e676;" text="Save" textFill="WHITE" />
-    <Button fx:id="btn_cancel" layoutX="302.0" layoutY="258.0" mnemonicParsing="false" onAction="#btn_cancel_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Cancel" />
-    <Button layoutX="232.0" layoutY="258.0" mnemonicParsing="false" onAction="#btn_clear_on_click" prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Clear" />
+    <Button fx:id="btn_save" layoutX="160.0" layoutY="258.0" mnemonicParsing="false" onAction="#btn_save_on_click"
+            prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25; -fx-background-color: #00e676;"
+            text="Save" textFill="WHITE"/>
+    <Button fx:id="btn_cancel" layoutX="302.0" layoutY="258.0" mnemonicParsing="false" onAction="#btn_cancel_on_click"
+            prefHeight="20.0" prefWidth="62.0" style="-fx-background-radius: 25;" text="Cancel"/>
+    <Button layoutX="232.0" layoutY="258.0" mnemonicParsing="false" onAction="#btn_clear_on_click" prefHeight="20.0"
+            prefWidth="62.0" style="-fx-background-radius: 25;" text="Clear"/>
 </AnchorPane>

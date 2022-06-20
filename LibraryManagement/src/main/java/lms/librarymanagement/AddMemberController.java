@@ -52,22 +52,16 @@ public class AddMemberController {
         String classYear = txt_class_year.getText();
         String academicYear = txt_academic_year.getText();
 
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Please insert name");
             return;
-        }
-
-        else if(rollNo.isEmpty()){
+        } else if (rollNo.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Please insert roll number");
             return;
-        }
-
-        else if(classYear.isEmpty()){
+        } else if (classYear.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Please insert class year");
             return;
-        }
-
-        else if(academicYear.isEmpty()){
+        } else if (academicYear.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Please insert academic year");
             return;
         }
@@ -80,17 +74,16 @@ public class AddMemberController {
         member.setCreatedAt(LocalDate.now());
         member.setExpireAt(member.getCreatedAt().plusYears(1));
 
-        if(DatabaseService.addMember(member)){
+        if (DatabaseService.addMember(member)) {
             showAlert(Alert.AlertType.INFORMATION, "A new member is added");
             Stage stage = (Stage) btn_save.getScene().getWindow();
             stage.close();
-        }
-        else{
+        } else {
             showAlert(Alert.AlertType.ERROR, "Something went wrong");
         }
     }
 
-    private void showAlert(Alert.AlertType type, String msg){
+    private void showAlert(Alert.AlertType type, String msg) {
         Alert alert = new Alert(type);
         alert.setContentText(msg);
         alert.setHeaderText(null);
