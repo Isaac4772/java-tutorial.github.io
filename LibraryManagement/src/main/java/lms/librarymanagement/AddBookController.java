@@ -1,19 +1,17 @@
 package lms.librarymanagement;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import lms.librarymanagement.model.entity.Author;
 import lms.librarymanagement.model.entity.Book;
 import lms.librarymanagement.model.entity.Category;
 import lms.librarymanagement.model.services.DatabaseService;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
@@ -22,13 +20,7 @@ import java.util.ResourceBundle;
 public class AddBookController extends HomeController implements Initializable {
 
     @FXML
-    private Button btn_auth;
-
-    @FXML
     private Button btn_cancel;
-
-    @FXML
-    private Button btn_cate;
 
     @FXML
     private Button btn_save;
@@ -43,12 +35,6 @@ public class AddBookController extends HomeController implements Initializable {
     private DatePicker cbo_pub_date;
 
     @FXML
-    private ToggleGroup rdo_avail;
-
-    @FXML
-    private RadioButton rdo_no;
-
-    @FXML
     private RadioButton rdo_yes;
 
     @FXML
@@ -56,21 +42,19 @@ public class AddBookController extends HomeController implements Initializable {
 
     private List<Author> authorList;
     private List<Category> categoryList;
-    
 
-    @FXML
-    void btn_add_new(ActionEvent event) throws IOException {
-
+    public AddBookController() {
     }
 
+
     @FXML
-    void btn_cancel_on_click(ActionEvent event) {
+    void btn_cancel_on_click() {
         Stage stage = (Stage) btn_cancel.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    void btn_clear_on_click(ActionEvent event) {
+    void btn_clear_on_click() {
         txt_title.setText(null);
         cbo_pub_date.setValue(null);
         cbo_auth.getSelectionModel().clearSelection();

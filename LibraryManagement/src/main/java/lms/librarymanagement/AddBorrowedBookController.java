@@ -1,12 +1,6 @@
 package lms.librarymanagement;
 
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -21,6 +15,12 @@ import lms.librarymanagement.model.entity.BorrowedBook;
 import lms.librarymanagement.model.entity.Member;
 import lms.librarymanagement.model.services.DatabaseService;
 
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
 public class AddBorrowedBookController implements Initializable {
 
 	@FXML
@@ -33,9 +33,6 @@ public class AddBorrowedBookController implements Initializable {
 	private Button btn_cancel;
 
 	@FXML
-	private Button btn_cate;
-
-	@FXML
 	private Button btn_save;
 
 	@FXML
@@ -46,26 +43,24 @@ public class AddBorrowedBookController implements Initializable {
 
 	private static List<Book> bookList;
 	private static List<Member> memberList;
-	
-	@FXML
-	void btn_add_new(ActionEvent event) {
 
+	public AddBorrowedBookController() {
 	}
 
 	@FXML
-	void btn_cancel_on_click(ActionEvent event) {
+	void btn_cancel_on_click() {
 		Stage stage = (Stage) btn_cancel.getScene().getWindow();
 		stage.close();
 	}
 
 	@FXML
-	void btn_clear_on_click(ActionEvent event) {
+	void btn_clear_on_click() {
 		member_data.getSelectionModel().clearSelection();
 		book_data.getSelectionModel().clearSelection();
 	}
 
 	@FXML
-	void btn_save_on_click(ActionEvent event) {
+	void btn_save_on_click() {
 		BorrowedBook bBook = new BorrowedBook();
 		int bookIndex = book_data.getSelectionModel().getSelectedIndex();
 		int memberIndex = member_data.getSelectionModel().getSelectedIndex();
@@ -101,7 +96,7 @@ public class AddBorrowedBookController implements Initializable {
 		List<String> memberIdAndName = new ArrayList<>();
 		memberList.forEach(s -> System.out.println(s.getCardId()));
 		for (Member member : memberList) {
-			memberIdAndName.add(String.valueOf(member.getCardId()) + ". " + member.getName());
+			memberIdAndName.add(member.getCardId() + ". " + member.getName());
 		}
 		member_data.setItems(FXCollections.observableArrayList(memberIdAndName));
 
@@ -111,7 +106,7 @@ public class AddBorrowedBookController implements Initializable {
 		bookList = DatabaseService.getAvailableBooks();
 		List<String> bookIdAndName = new ArrayList<>();
 		for (Book book : bookList) {
-			bookIdAndName.add(String.valueOf(book.getCode()) + ". " + book.getTitle());
+			bookIdAndName.add(book.getCode() + ". " + book.getTitle());
 		}
 		book_data.setItems(FXCollections.observableArrayList(bookIdAndName));
 	}
@@ -138,7 +133,7 @@ public class AddBorrowedBookController implements Initializable {
 			if (bookResults.size() > 0) { // check if searched results exist
 				List<String> bookIdAndName = new ArrayList<>();
 				for (Book book : bookResults) {
-					bookIdAndName.add(String.valueOf(book.getCode()) + ". " + book.getTitle());
+					bookIdAndName.add(book.getCode() + ". " + book.getTitle());
 				}
 				book_data.setItems(FXCollections.observableArrayList(bookIdAndName));
 			}
@@ -169,7 +164,7 @@ public class AddBorrowedBookController implements Initializable {
 				List<String> memberIdAndName = new ArrayList<>();
 				memberList.forEach(s -> System.out.println(s.getCardId()));
 				for (Member member : memberList) {
-					memberIdAndName.add(String.valueOf(member.getCardId()) + ". " + member.getName());
+					memberIdAndName.add(member.getCardId() + ". " + member.getName());
 				}
 				member_data.setItems(FXCollections.observableArrayList(memberIdAndName));
 			}

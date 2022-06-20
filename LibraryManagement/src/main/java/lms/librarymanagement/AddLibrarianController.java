@@ -1,6 +1,5 @@
 package lms.librarymanagement;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -33,13 +32,13 @@ public class AddLibrarianController {
     private TextField txt_username;
 
     @FXML
-    void btn_cancel_on_click(ActionEvent event) {
+    void btn_cancel_on_click() {
         Stage stage = (Stage) btn_cancel.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    void btn_clear_on_click(ActionEvent event) {
+    void btn_clear_on_click() {
         txt_username.clear();
         txt_password.clear();
         txt_nrcno.clear();
@@ -47,7 +46,7 @@ public class AddLibrarianController {
     }
 
     @FXML
-    void btn_save_on_click(ActionEvent event) {
+    void btn_save_on_click() {
         Librarian librarian = new Librarian();
         String username = txt_username.getText();
         String password = txt_password.getText();

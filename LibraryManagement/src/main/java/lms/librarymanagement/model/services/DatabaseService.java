@@ -47,37 +47,6 @@ public class DatabaseService {
 		return bookList;
 	}
 
-	public static Book getBookByCode(int code) {
-		Book book = new Book();
-		try (Connection connection = MyConnection.getConnection()) {
-
-			String query = """
-					SELECT b.*, c.name 'cat_name',a.name 'author_name' FROM books b,categories c, authors a
-					WHERE code = ? AND b.category_id = c.category_id AND b.author_id = a.author_id
-																		""";
-			PreparedStatement preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, code);
-			ResultSet resultSet = preparedStatement.executeQuery();
-			if (resultSet.next()) {
-				book.setCode(resultSet.getInt("code"));
-				book.setTitle(resultSet.getString("title"));
-				book.setPublishedDate(LocalDate.parse(resultSet.getString("published_date")));
-				book.setIsAvailable(resultSet.getInt("is_available"));
-				Category category = new Category();
-				category.setCategoryId(resultSet.getInt("category_id"));
-				category.setName(resultSet.getString("cat_name"));
-				book.setCategory(category);
-				Author author = new Author();
-				author.setAuthor_id(resultSet.getInt("author_id"));
-				author.setName(resultSet.getString("author_name"));
-				book.setAuthor(author);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return book;
-	}
-
 	public static List<Category> getAllCategories() {
 		List<Category> list = new ArrayList<>();
 		try (Connection con = MyConnection.getConnection()) {
@@ -455,7 +424,7 @@ public class DatabaseService {
 		boolean updated = false;
 			try (Connection connection = MyConnection.getConnection()){
 				String query = """
-      					UPDATE `librarians` SET `username`=?,`password`=?,`nrcno`=?,`phone`=?,`created_at`=? WHERE `id`=?
+											UPDATE `librarians` SET `username`=?,`password`=?,`nrcno`=?,`phone`=?,`created_at`=? WHERE `id`=?
 						""";
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				preparedStatement.setString(1,librarian.getUsername());
@@ -514,8 +483,8 @@ public class DatabaseService {
 		boolean updated = false;
 		try(Connection connection = MyConnection.getConnection()){
 			String query = """
-     					UPDATE `members` SET `name`=?,`roll_no`=?,`academic_year`=?,
-     					`class_year`=?,`register_date`=?,`expire_date`=? WHERE `card_id`=?
+										UPDATE `members` SET `name`=?,`roll_no`=?,`academic_year`=?,
+										`class_year`=?,`register_date`=?,`expire_date`=? WHERE `card_id`=?
 					""";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -561,8 +530,8 @@ public class DatabaseService {
 		boolean added = false;
 			try(Connection connection = MyConnection.getConnection()){
 				String query = """
-      					INSERT INTO `members`(`name`, `roll_no`, `academic_year`, `class_year`, `register_date`, `expire_date`)
-      					VALUES (?,?,?,?,?,?)
+											INSERT INTO `members`(`name`, `roll_no`, `academic_year`, `class_year`, `register_date`, `expire_date`)
+											VALUES (?,?,?,?,?,?)
 						""";
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				preparedStatement.setString(1, member.getName());

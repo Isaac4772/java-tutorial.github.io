@@ -1,6 +1,5 @@
 package lms.librarymanagement;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -33,13 +32,13 @@ public class AddMemberController {
     private TextField txt_roll_no;
 
     @FXML
-    void btn_cancel_on_click(ActionEvent event) {
+    void btn_cancel_on_click() {
         Stage stage = (Stage) btn_cancel.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    void btn_clear_on_click(ActionEvent event) {
+    void btn_clear_on_click() {
         txt_name.clear();
         txt_class_year.clear();
         txt_roll_no.clear();
@@ -47,7 +46,7 @@ public class AddMemberController {
     }
 
     @FXML
-    void btn_save_on_click(ActionEvent event) {
+    void btn_save_on_click() {
         String name = txt_name.getText();
         String rollNo = txt_roll_no.getText();
         String classYear = txt_class_year.getText();

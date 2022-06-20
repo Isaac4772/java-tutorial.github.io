@@ -47,41 +47,6 @@ public class HomeController implements Initializable {
 	@FXML
 	private ToggleButton btnSignOut;
 
-	@FXML
-	private Button btn_add_new;
-
-	@FXML
-	private Button btn_add_new1;
-
-	@FXML
-	private Button btn_add_new_auth;
-
-	@FXML
-	private Button btn_add_new_cate;
-
-	@FXML
-	private Button btn_add_new_librarian;
-
-	@FXML
-	private Button btn_del;
-
-	@FXML
-	private Button btn_del_librarian;
-
-	@FXML
-	private Button btn_return1;
-
-	@FXML
-	private Button btn_save;
-
-	@FXML
-	private Button btn_save_auth;
-
-	@FXML
-	private Button btn_save_cate;
-
-	@FXML
-	private Button btn_update_member;
 
 	@FXML
 	private TableColumn<Member, Year> col_academic_year_mem;
@@ -124,17 +89,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	private TextField txt_search_member;
-	@FXML
-	private Button btn_add_new_member;
 
-	@FXML
-	private ToggleGroup btn_toggle;
-
-	@FXML
-	private Button btn_update_librarian;
-
-	@FXML
-	private Button btn_del_member;
 	@FXML
 	private ComboBox<String> cbo_auth;
 
@@ -582,10 +537,10 @@ public class HomeController implements Initializable {
 		alert.show();
 	}
 
-	private void showAlert(Alert.AlertType type, String header, String message) {
-		Alert alert = new Alert(type);
-		alert.setHeaderText(header);
-		alert.setContentText(message);
+	private void showAlert() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("Cannot Delete members.");
+		alert.setContentText("This member hasn't returned books yet.");
 		alert.show();
 	}
 
@@ -968,7 +923,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	void btn_update_on_click_librarian(ActionEvent event) {
+	void btn_update_on_click_librarian() {
 
 		librarian.setUsername(txt_username.getText());
 		librarian.setPassword(txt_password.getText());
@@ -985,7 +940,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	void btn_del_on_click_librarian(ActionEvent event) {
+	void btn_del_on_click_librarian() {
 		if(DatabaseService.deleteLibrarian(librarian.getId())){
 			showAlert(AlertType.INFORMATION, "Librarian deleted");
 			initialize(null, null);
@@ -994,7 +949,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	void btn_add_new_on_click_member(ActionEvent event) throws IOException {
+	void btn_add_new_on_click_member() throws IOException {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader(Main.class.getResource("addMember.fxml"));
 		Scene scene = new Scene(loader.load());
@@ -1006,7 +961,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	void btn_update_on_click_member(ActionEvent event) {
+	void btn_update_on_click_member() {
 		member.setName(txt_name_mem.getText());
 		member.setRollNo(txt_roll_no_mem.getText());
 		member.setAcademicYear(Year.parse(txt_academic_year_mem.getText()));
@@ -1060,7 +1015,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	void btn_del_on_click_member(ActionEvent event){
+	void btn_del_on_click_member(){
 
 
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -1089,7 +1044,7 @@ public class HomeController implements Initializable {
 					}
 				}
 				else{
-					showAlert(AlertType.INFORMATION, "Cannot Delete members.", "This member hasn't returned books yet.");
+					showAlert();
 				}
 			} else {
 				alert.close();
@@ -1101,7 +1056,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	void click_item_member(MouseEvent event) {
+	void click_item_member() {
 		member = tbl_members.getSelectionModel().getSelectedItem();
 		System.out.println(member);
 		txt_card_id_mem.setText(String.valueOf(member.getCardId()));
@@ -1114,7 +1069,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	void btn_add_new_on_click_librarian(ActionEvent event) throws IOException {
+	void btn_add_new_on_click_librarian() throws IOException {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader(Main.class.getResource("addLibrarian.fxml"));
 		Scene scene = new Scene(loader.load());
@@ -1125,7 +1080,7 @@ public class HomeController implements Initializable {
 	}
 
 	@FXML
-	void click_item_librarian(MouseEvent event) {
+	void click_item_librarian() {
 		librarian = tbl_librarians.getSelectionModel().getSelectedItem();
 		System.out.println(librarian);
 		txt_id.setText(String.valueOf(librarian.getId()));
